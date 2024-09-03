@@ -5,21 +5,12 @@ on:
     # Runs at 12am IST
     - cron: '30 18 * * *'
   workflow_dispatch:
-
 jobs:
   update-readme:
     name: Update Readme with Metrics
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          ref: master  # 'main' 대신 실제 브랜치 이름 'master'로 변경
-
-      - name: Update WakaTime README
-        uses: jionu102/master@master  # 여기도 올바른 브랜치 이름으로 수정
+      - uses: anmol098/waka-readme-stats@master
         with:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          PUSH_BRANCH_NAME: master  # 실제 사용 중인 브랜치 이름으로 변경
-          PULL_BRANCH_NAME: master  # 실제 사용 중인 브랜치 이름으로 변경
