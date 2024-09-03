@@ -2,22 +2,21 @@ name: Waka Readme
 
 on:
   schedule:
-    # Runs at 12am IST
     - cron: '30 18 * * *'
   workflow_dispatch:
 
 jobs:
   update-readme:
-    name: Update Readme with Metrics
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: master  # 'main'을 'master' 또는 다른 브랜치로 변경합니다.
+          ref: master  # 기본 브랜치로 변경
 
       - name: Update WakaTime README
-        uses: anmol098/waka-readme-stats@master  # 'master'로 수정
+        uses: anmol098/waka-readme-stats@master
         with:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          PUSH_BRANCH_NAME: master  # 브랜치 이름을 'master'로 변경
